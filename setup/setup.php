@@ -1,32 +1,17 @@
 <?php
+function conectar() {
+    // En XAMPP usará estos por defecto si no existe el .env aún. En AWS usará los del sistema.
+    $host = getenv('DB_HOST') ?: "127.0.0.1";
+    $user = getenv('DB_USER') ?: "root";
+    $pass = getenv('DB_PASS') ?: "";
+    $db   = getenv('DB_NAME') ?: "pnk_security";
+    $port = getenv('DB_PORT') ?: 3307; // Ajusta al puerto de tu MariaDB local si es necesario
 
-function conectar()
-{
-    $con=mysqli_connect("localhost","root","","pnk_security");
+    $con = mysqli_connect($host, $user, $pass, $db, $port);
+    if (!$con) {
+        die("Error de conexión a la base de datos.");
+    }
     return $con;
 }
 
-function quitarespacios($titulo)
-{
-    $titulo =str_replace(" ", "", $titulo);
-    $cadena =str_replace("ñ", "", $titulo);
-    $cadena =str_replace("Ñ", "", $cadena);
-    return $cadena;
-}
-
-function moneda_chilena($numero){
-    $numero = (string)$numero;
-    $puntos = floor((strlen($numero)-1)/3);
-    $tmp = "";
-    $pos = 1;
-    for($i=strlen($numero)-1; $i>=0; $i--){
-    $tmp = $tmp.substr($numero, $i, 1);
-    if($pos%3==0 && $pos!=strlen($numero))
-    $tmp = $tmp.".";
-    $pos = $pos + 1;
-    }
-    $formateado = "$ ".strrev($tmp);
-    return $formateado;
-    }
-
-?>
+// ... (mantén aquí abajo las funciones quitarespacios() y moneda_chilena() intactas) ...

@@ -3,7 +3,7 @@
 include("setup/setup.php");
 session_start();
 
-mysqli_set_charset(conectar(), 'utf8');
+mysqli_set_charset(conectar(), 'utf8mb4');
 $key=$_GET['id'];
 $_SESSION['id']=$_GET['id'];
 
@@ -21,7 +21,7 @@ $datos_restorant=mysqli_fetch_array($result_restorant);
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title><?php echo utf8_encode($datos_restorant['nombre']);?></title>
+  <title><?php echo $datos_restorant['nombre'];?></title>
 	<!--<link rel="icon" href="img/Fevicon.png" type="image/png">-->
 
   <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
@@ -110,7 +110,7 @@ $datos_restorant=mysqli_fetch_array($result_restorant);
                   <path fill-rule="evenodd" d="M12.166 8.94C12.696 7.867 13 6.862 13 6A5 5 0 0 0 3 6c0 .862.305 1.867.834 2.94.524 1.062 1.234 2.12 1.96 3.07A31.481 31.481 0 0 0 8 14.58l.208-.22a31.493 31.493 0 0 0 1.998-2.35c.726-.95 1.436-2.008 1.96-3.07zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
                   <path fill-rule="evenodd" d="M8 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                 </svg>  
-              <?php echo utf8_encode($datos_restorant['calle'])." #".$datos_restorant['numero'].", ".utf8_encode($datos_restorant['comuna']);?>
+              <?php echo $datos_restorant['calle']." #".$datos_restorant['numero'].", ".utf8_encode($datos_restorant['comuna']);?>
               </h5>
               <?php
                }
@@ -175,9 +175,9 @@ $datos_restorant=mysqli_fetch_array($result_restorant);
               }
               ?>
           <div class="item-body">
-              <h3><?php echo utf8_encode($destacados['nombre']);?></h3>
-            <p><?php echo utf8_encode($destacados['descripcion']);?><br>
-            <?php echo utf8_encode($destacados['observaciones']);?><br>
+              <h3><?php echo $destacados['nombre'];?></h3>
+            <p><?php echo $destacados['descripcion'];?><br>
+            <?php echo $destacados['observaciones'];?><br>
             <?php
             if($destacados['tiempo']!="")
             {
@@ -292,11 +292,11 @@ $datos_restorant=mysqli_fetch_array($result_restorant);
                                                 ?>
                                                 <div class="media-body">
                                                   <div class="d-flex justify-content-between food-card-title">
-                                                    <h4><?php echo utf8_encode($datos_items['nombre']);?></h4>
+                                                    <h4><?php echo $datos_items['nombre'];?></h4>
                                                     <h3 class="price-tag"><?php echo moneda_chilena($datos_items['precio']);?></h3>
                                                   </div>
-                                                  <p><?php echo utf8_encode($datos_items['descripcion']);?></br>
-                                                  <?php echo utf8_encode($datos_items['observaciones']);?></p>
+                                                  <p><?php echo $datos_items['descripcion'];?></br>
+                                                  <?php echo $datos_items['observaciones'];?></p>
                                                   <?php
                                                   if($datos_items['tiempo']!="")
                                                   {
